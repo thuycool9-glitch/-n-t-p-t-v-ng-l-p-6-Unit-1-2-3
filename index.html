@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Vocabulary Challenge – Grade 6</title>
+<style>
+:root{--ink:#1d2a44;--bg:#e6f0ff;--c1:#2f6fed;--c2:#17a36b;--c3:#8a4fe0;--gold:#ffc83d}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--ink);color:#fff;gap:8px;flex-wrap:wrap}
+header b{font-size:1.05rem}header span{font-size:.9rem}
+main{max-width:760px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:20px;padding:20px;box-shadow:0 4px 14px rgba(29,42,68,.12);margin-bottom:14px;border-top:8px solid var(--c1)}
+.card.u2{border-color:var(--c2)}.card.u3{border-color:var(--c3)}.card.u4{border-color:var(--gold)}
+h1{font-size:2rem;margin:.2em 0;line-height:1.1}h2{margin:.2em 0}
+.sub{color:#51607e;margin:0 0 12px}
+.hero{font-size:3rem;letter-spacing:.2em}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip,.b,.o,.sp{font:inherit;border:0;cursor:pointer;border-radius:14px}
+.chip{padding:10px 14px;background:#eef2fa;color:var(--ink);font-weight:700;border:2px solid transparent}
+.chip.on{border-color:var(--ink);background:var(--gold)}
+.b{padding:14px 18px;background:var(--ink);color:#fff;font-weight:700;font-size:1rem;margin:4px 4px 4px 0}
+.b.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.menu .b{margin:0;text-align:left}
+.top{display:flex;justify-content:space-between;font-weight:700}
+.bar{height:10px;background:#e3e9f5;border-radius:9px;margin:8px 0;overflow:hidden}.bar i{display:block;height:100%;background:var(--c2);transition:width .3s}
+.n{margin:0;color:#51607e;font-size:.9rem}
+.q{font-size:1.3rem;line-height:1.5;margin:14px 0}
+.big{font-size:4.5rem;text-align:center}.big2{font-size:1.8rem;letter-spacing:.15em}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.opts{grid-template-columns:1fr}h1{font-size:1.6rem}}
+.o{padding:16px;background:#f1f5fd;font-size:1.05rem;font-weight:700;color:var(--ink);border:2px solid #d5deef}
+.o:hover:not(:disabled){border-color:var(--ink)}
+.o.ok{background:#c9f2dc;border-color:var(--c2)}.o.no{background:#ffd9d9;border-color:#e25555}
+.sp{padding:10px 16px;background:var(--gold);font-weight:700;margin-bottom:10px}
+input{font:inherit;font-size:1.1rem;padding:12px;border:2px solid #d5deef;border-radius:12px;width:min(260px,100%)}
+.fb{margin:14px 0 6px;padding:12px;border-radius:14px;line-height:1.5}.fb.g{background:#e3f8ec}.fb.r{background:#ffecec}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pop{animation:pp .5s}@keyframes pp{0%{transform:scale(.8)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+.w{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid #e3e9f5}
+.w .em{font-size:2rem;grid-row:span 2}.w small{color:#51607e}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:12px 0}
+.stat div{background:#f1f5fd;border-radius:14px;padding:10px;text-align:center}.stat b{display:block;font-size:1.5rem}
+.row{display:grid;grid-template-columns:70px 1fr 50px;gap:8px;align-items:center;margin:6px 0}
+.row .bar{margin:0;height:16px}.u1b{background:var(--c1)!important}.u2b{background:var(--c2)!important}.u3b{background:var(--c3)!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+</style></head><body>
+<header><b>ENGLISH VOCABULARY CHALLENGE · Grade 6</b><span id="hd"></span><button class="chip" id="snd" onclick="tg()">🔊 Âm thanh: Bật</button></header>
+<main id="v"></main>
+<script>
+const U={1:'My New School',2:'My House',3:'My Friends'};
+// [unit, word, IPA, pos, Vietnamese, emoji ('' = none), example]
+const D=[
+[1,'school','/skuːl/','n','trường học','🏫','I go to school by bike.'],
+[1,'teacher','/ˈtiːtʃə/','n','giáo viên','👩‍🏫','My teacher is very kind.'],
+[1,'student','/ˈstjuːdnt/','n','học sinh','🧑‍🎓','She is a new student in our class.'],
+[1,'textbook','/ˈtekstbʊk/','n','sách giáo khoa','📘','Open your textbook on page ten.'],
+[1,'pencil','/ˈpensl/','n','bút chì','✏️','I draw with a pencil.'],
+[1,'ruler','/ˈruːlə/','n','thước kẻ','📏','Use a ruler to draw a line.'],
+[1,'calculator','/ˈkælkjuleɪtə/','n','máy tính cầm tay','','We use a calculator in Maths.'],
+[1,'school bag','/ˌskuːl ˈbæɡ/','n','cặp sách','🎒','My school bag is heavy.'],
+[1,'computer','/kəmˈpjuːtə/','n','máy vi tính','💻','We have computer lessons on Friday.'],
+[1,'library','/ˈlaɪbrəri/','n','thư viện','📚','I read books in the library.'],
+[1,'music','/ˈmjuːzɪk/','n','âm nhạc','🎵','We sing songs in Music class.'],
+[1,'art','/ɑːt/','n','mỹ thuật','🎨','I paint pictures in Art class.'],
+[1,'science','/ˈsaɪəns/','n','môn Khoa học','🔬','Science is my favourite subject.'],
+[1,'Maths','/mæθs/','n','môn Toán','➗','I have Maths on Monday.'],
+[1,'homework','/ˈhəʊmwɜːk/','n','bài tập về nhà','📝','I do my homework after dinner.'],
+[1,'notebook','/ˈnəʊtbʊk/','n','vở ghi chép','📓','I write new words in my notebook.'],
+[2,'house','/haʊs/','n','ngôi nhà','🏠','My house has two floors.'],
+[2,'apartment','/əˈpɑːtmənt/','n','căn hộ','🏢','They live in an apartment in the city.'],
+[2,'bedroom','/ˈbedruːm/','n','phòng ngủ','🛏️','I sleep in my bedroom.'],
+[2,'bathroom','/ˈbɑːθruːm/','n','phòng tắm','🛁','I brush my teeth in the bathroom.'],
+[2,'kitchen','/ˈkɪtʃɪn/','n','nhà bếp','🍳','Mum cooks in the kitchen.'],
+[2,'living room','/ˈlɪvɪŋ ruːm/','n','phòng khách','','We watch TV in the living room.'],
+[2,'sofa','/ˈsəʊfə/','n','ghế sô-pha','🛋️','The cat is sleeping on the sofa.'],
+[2,'television','/ˈtelɪvɪʒn/','n','ti vi','📺','There is a television in my house.'],
+[2,'fridge','/frɪdʒ/','n','tủ lạnh','','The milk is in the fridge.'],
+[2,'cooker','/ˈkʊkə/','n','bếp nấu','','Be careful! The cooker is hot.'],
+[2,'wardrobe','/ˈwɔːdrəʊb/','n','tủ quần áo','','My clothes are in the wardrobe.'],
+[2,'lamp','/læmp/','n','đèn bàn','','There is a lamp on my desk.'],
+[2,'window','/ˈwɪndəʊ/','n','cửa sổ','🪟','Please open the window.'],
+[2,'door','/dɔː/','n','cửa ra vào','🚪','Close the door, please.'],
+[2,'garden','/ˈɡɑːdn/','n','khu vườn','🌳','We have flowers in our garden.'],
+[2,'chair','/tʃeə/','n','cái ghế','🪑','Sit on the chair, please.'],
+[3,'friend','/frend/','n','bạn bè','🧑‍🤝‍🧑','Lan is my best friend.'],
+[3,'hair','/heə/','n','tóc','💇','She has long black hair.'],
+[3,'eyes','/aɪz/','n','đôi mắt','👀','He has big brown eyes.'],
+[3,'nose','/nəʊz/','n','cái mũi','👃','My dog has a wet nose.'],
+[3,'mouth','/maʊθ/','n','cái miệng','👄','Open your mouth, please.'],
+[3,'ears','/ɪəz/','n','đôi tai','👂','We hear with our ears.'],
+[3,'tall','/tɔːl/','adj','cao','','My brother is tall.'],
+[3,'short','/ʃɔːt/','adj','thấp, lùn','','The little boy is short.'],
+[3,'slim','/slɪm/','adj','mảnh mai','','She is tall and slim.'],
+[3,'curly','/ˈkɜːli/','adj','xoăn','','He has curly hair.'],
+[3,'kind','/kaɪnd/','adj','tốt bụng','','She is kind to everyone.'],
+[3,'funny','/ˈfʌni/','adj','hài hước','','He tells jokes. He is funny.'],
+[3,'clever','/ˈklevə/','adj','thông minh','','Nam is clever. He gets good marks.'],
+[3,'shy','/ʃaɪ/','adj','nhút nhát','','She is shy with new people.'],
+[3,'active','/ˈæktɪv/','adj','năng động','','He is active and plays sport.'],
+[3,'helpful','/ˈhelpfl/','adj','hay giúp đỡ','','Mai is helpful. She helps me with homework.']];
+const V=D.map(r=>({u:r[0],w:r[1],i:r[2],p:r[3],v:r[4],e:r[5],x:r[6]}));
+const $=s=>document.querySelector(s);
+const sh=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let snd=true,sel=0,S={};
+function tg(){snd=!snd;$('#snd').textContent='🔊 Âm thanh: '+(snd?'Bật':'Tắt')}
+function beep(ok){if(!snd)return;try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?660:200;g.gain.value=.1;o.start();o.stop(c.currentTime+.18)}catch(e){}}
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+
+/* ---------- Question bank (generated from the word list, so word, answer, hint and picture always match) ---------- */
+function mk(w,t,g){
+  const o=sh(V.filter(x=>x.u==w.u&&x!==w)).slice(0,3);
+  const q={u:w.u,g:g,w:w.w,ex:`<b>${w.w}</b> ${w.i} (${w.p}): ${w.v}. Ví dụ: ${w.x}`};
+  if(t=='pic'&&!w.e)t='mc2';
+  if(t=='spell'&&w.w.includes(' '))t='fill';
+  const mc=(txt,lab)=>{const op=sh([w,...o]);q.q=txt;q.o=op.map(lab);q.a=op.indexOf(w);return q};
+  if(t=='mc')return mc(`Từ <b>${w.w}</b> có nghĩa là gì?`,x=>x.v);
+  if(t=='mc2')return mc(`«${w.v}» trong tiếng Anh là gì?`,x=>x.w);
+  if(t=='pic')return mc(`Hình này là gì?<div class="big">${w.e}</div>`,x=>x.w);
+  if(t=='fill')return mc(`Điền từ có nghĩa «${w.v}»:<br><i>${w.x.replace(new RegExp('\\b'+w.w+'\\b','i'),'_____')}</i>`,x=>x.w);
+  if(t=='listen'){q.say=w.w;return mc('Nghe và chọn từ đúng.',x=>x.w)}
+  if(t=='tf'){const f=Math.random()<.5,m=f?o[0]:w;q.q=`Đúng hay sai?<br><b>${w.w}</b> = «${m.v}»`;q.o=['Đúng','Sai'];q.a=f?1:0;return q}
+  let s;do{s=sh(w.w.split('')).join('')}while(s==w.w);
+  q.sp=1;q.q=`Sắp xếp các chữ cái thành từ đúng:<br><b class="big2">${s.toUpperCase()}</b><br>Nghĩa: ${w.v}`;q.a=w.w.toLowerCase();return q}
+const T=['mc','fill','pic','spell','listen','tf'];
+const Q=[];
+[1,2,3].forEach(u=>{const ws=V.filter(x=>x.u==u);for(let i=0;i<30;i++)Q.push(mk(ws[(i*5)%ws.length],T[i%6],u))});
+sh(V).slice(0,10).forEach((w,i)=>Q.push(mk(w,['mc2','fill','listen','tf','mc'][i%5],4)));
+
+/* ---------- Screens ---------- */
+function upd(){$('#hd').textContent=S.qs?`Điểm: ${S.score} · Đúng ${S.right} · Sai ${S.wrong}`:''}
+function best(){try{return+localStorage.getItem('ev6best')||0}catch(e){return 0}}
+function home(){
+  clearInterval(S.tm);S={};upd();
+  $('#v').innerHTML=`<div class="card u4 pop"><div class="hero">🏫🏠🧑‍🤝‍🧑</div><h1>ENGLISH VOCABULARY CHALLENGE</h1><p class="sub">GRADE 6 – UNIT 1, 2, 3 · Điểm cao nhất của bạn: <b>${best()}</b></p>
+  <b>Chọn nội dung ôn tập</b><div class="chips">${[[1,'Unit 1 · My New School'],[2,'Unit 2 · My House'],[3,'Unit 3 · My Friends'],[0,'Cả 3 Unit + câu tổng hợp']].map(c=>`<button class="chip ${sel==c[0]?'on':''}" onclick="sel=${c[0]};home()">${c[1]}</button>`).join('')}</div>
+  <div class="menu"><button class="b" onclick="start('practice')">▶ START GAME<br><small>Luyện tập, có giải thích</small></button>
+  <button class="b" onclick="start('speed')">⏱ Thử thách tốc độ<br><small>20 câu · 20 giây/câu</small></button>
+  <button class="b" onclick="start('test')">📝 Kiểm tra tổng hợp<br><small>30 câu · 20 phút</small></button>
+  <button class="b alt" onclick="bank()">📖 VOCABULARY BANK</button>
+  <button class="b alt" onclick="how()">❓ HOW TO PLAY</button></div></div>`}
+function how(){$('#v').innerHTML=`<div class="card"><h2>HOW TO PLAY</h2><p>• Chọn Unit rồi bấm START GAME. Mỗi câu đúng được <b>+10 điểm</b>, đúng liên tiếp 5 câu được thêm <b>+5</b>. Câu sai không bị trừ điểm.</p><p>• Thử thách tốc độ: có đồng hồ 20 giây mỗi câu.</p><p>• Kiểm tra tổng hợp: 30 câu ngẫu nhiên, 20 phút, không hiện đáp án khi đang làm.</p><p>• Dạng câu hỏi: chọn nghĩa, nhìn hình, điền từ, sắp xếp chữ cái, nghe và chọn, đúng/sai.</p><p>• Ở Kho từ vựng, bấm 🔊 để nghe phát âm (cần trình duyệt hỗ trợ).</p><button class="b" onclick="home()">Về trang chủ</button></div>`}
+let bf=0,bq='';
+function bank(){
+  const l=V.filter(x=>(!bf||x.u==bf)&&(x.w+x.v).toLowerCase().includes(bq.toLowerCase()));
+  $('#v').innerHTML=`<div class="card"><h2>VOCABULARY BANK</h2><input id="sq" placeholder="Tìm từ…" value="${bq}" oninput="bq=this.value;bank();const e=$('#sq');e.focus();e.setSelectionRange(bq.length,bq.length)">
+  <div class="chips">${[[0,'Tất cả'],[1,'Unit 1'],[2,'Unit 2'],[3,'Unit 3']].map(c=>`<button class="chip ${bf==c[0]?'on':''}" onclick="bf=${c[0]};bank()">${c[1]}</button>`).join('')}</div>
+  ${l.map(x=>`<div class="w"><span class="em">${x.e||'📘'}</span><span><b>${x.w}</b> ${x.i} <small>(${x.p})</small> – ${x.v}</span><button class="sp" aria-label="Nghe ${x.w}" onclick="say('${x.w}')">🔊</button><small style="grid-column:2/4">${x.x}</small></div>`).join('')||'<p>Không tìm thấy từ nào. Hãy thử từ khóa khác.</p>'}
+  <br><button class="b" onclick="home()">Về trang chủ</button></div>`}
+
+/* ---------- Game ---------- */
+function start(mode){
+  const pool=sel?Q.filter(q=>q.g==sel):Q;
+  const qs=mode=='test'?sh(Q).slice(0,30):mode=='speed'?sh(pool).slice(0,20):sh(pool);
+  S={mode:mode,qs:qs,i:0,score:0,right:0,wrong:0,streak:0,wrongs:[],per:{1:[0,0],2:[0,0],3:[0,0]},t0:Date.now(),left:mode=='test'?1200:0};
+  if(mode=='test')S.tm=setInterval(()=>{S.left--;clk();if(S.left<=0)finish()},1000);
+  show()}
+function clk(){const e=$('#tm');if(!e)return;e.textContent=S.mode=='test'?`⏳ ${Math.floor(S.left/60)}:${String(S.left%60).padStart(2,'0')}`:S.mode=='speed'?`⏱ ${S.q}s`:''}
+function show(){
+  const q=S.qs[S.i];S.lock=0;upd();
+  $('#v').innerHTML=`<div class="card u${q.u}"><div class="top"><span>Unit ${q.u} · ${U[q.u]}</span><span id="tm"></span></div><div class="bar"><i style="width:${S.i/S.qs.length*100}%"></i></div><p class="n">Câu ${S.i+1}/${S.qs.length}</p>
+  <div class="q">${q.q}</div>${q.say?`<button class="sp" onclick="say('${q.say}')">🔊 Nghe lại</button>`:''}
+  ${q.sp?`<input id="in" autocomplete="off" placeholder="Gõ từ tiếng Anh" onkeydown="if(event.key=='Enter')ans(this.value)"> <button class="b" onclick="ans($('#in').value)">Kiểm tra</button>`:`<div class="opts">${q.o.map((t,i)=>`<button class="o" onclick="ans(${i})">${t}</button>`).join('')}</div>`}<div id="fb"></div></div>`;
+  if(q.say)say(q.say);
+  if(S.mode=='speed'){clearInterval(S.tm);S.q=20;clk();S.tm=setInterval(()=>{S.q--;clk();if(S.q<=0)ans(-1)},1000)}else clk()}
+function ans(x){
+  if(S.lock)return;S.lock=1;if(S.mode=='speed')clearInterval(S.tm);
+  const q=S.qs[S.i],ok=q.sp?String(x).trim().toLowerCase()==q.a:x===q.a,pu=S.per[q.u];
+  pu[1]++;let msg='';
+  if(ok){pu[0]++;S.right++;S.streak++;S.score+=10;if(S.streak%5==0){S.score+=5;msg=` 🔥 Đúng liên tiếp ${S.streak} câu! +5 điểm thưởng.`}}
+  else{S.wrong++;S.streak=0;S.wrongs.push({q:q,x:x})}
+  if(S.mode=='test'){next();return}
+  beep(ok);upd();
+  document.querySelectorAll('.o').forEach((b,i)=>{b.disabled=1;if(i==q.a)b.classList.add('ok');else if(i==x)b.classList.add('no')});
+  if(q.sp)$('#in').disabled=true;
+  if(!ok)document.querySelector('.card').classList.add('shake');
+  $('#fb').innerHTML=`<div class="fb ${ok?'g pop':'r'}">${ok?'⭐ Chính xác! +10 điểm.'+msg:(x===-1?'Hết giờ. ':'Chưa đúng. ')+'Đáp án: <b>'+(q.sp?q.a:q.o[q.a])+'</b>'}<br>${q.ex}</div><button class="b" onclick="next()">Tiếp tục</button>`}
+function next(){S.i++;S.i<S.qs.length?show():finish()}
+function badge(p){return p>=90?'🏆 English Champion':p>=75?'🥇 Vocabulary Master':p>=55?'🥈 Vocabulary Explorer':'🥉 Vocabulary Beginner'}
+function finish(){
+  clearInterval(S.tm);const n=S.right+S.wrong,tot=S.qs.length,p=Math.round(S.right/tot*100),sec=Math.round((Date.now()-S.t0)/1000);
+  const rt=p>=90?'Excellent!':p>=80?'Very Good!':p>=65?'Good!':p>=50?'Keep Practising!':'Try Again!';
+  try{if(S.score>best())localStorage.setItem('ev6best',S.score)}catch(e){}
+  const weak=[...new Set(S.wrongs.map(m=>m.q.w))];
+  const units=[1,2,3].filter(u=>S.per[u][1]);
+  $('#v').innerHTML=`<div class="card u4 pop"><div class="hero">${p>=90?'🎉🏅🎉':p>=50?'🎖️':'💪'}</div><h1>${rt}</h1><p class="sub">Chúc mừng bạn đã hoàn thành! Huy hiệu: <b>${badge(p)}</b></p>
+  <div class="stat"><div><b>${S.score}</b>Tổng điểm</div><div><b>${S.right}</b>Câu đúng</div><div><b>${S.wrong}</b>Câu sai${n<tot?` (chưa làm: ${tot-n})`:''}</div><div><b>${p}%</b>Chính xác</div><div><b>${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}</b>Thời gian</div></div>
+  <b>Kết quả theo Unit</b>${units.map(u=>{const r=Math.round(S.per[u][0]/S.per[u][1]*100);return`<div class="row"><span>Unit ${u}</span><div class="bar"><i class="u${u}b" style="width:${r}%"></i></div><span>${r}%</span></div>`}).join('')}
+  ${weak.length?`<p><b>Từ cần ôn thêm:</b> ${weak.join(', ')}</p>`:'<p>Không có từ nào bị sai. Rất tốt!</p>'}
+  <button class="b" onclick="rev()" ${S.wrongs.length?'':'disabled'}>REVIEW MISTAKES</button><button class="b" onclick="start('${S.mode}')">PRACTISE AGAIN</button><button class="b alt" onclick="home()">BACK TO HOME</button></div>`;
+  S.qs=null}
+function rev(){
+  const w=S.wrongs;
+  $('#v').innerHTML=`<div class="card"><h2>REVIEW MISTAKES</h2>${w.map((m,i)=>`<div class="fb r"><b>${i+1}.</b> ${m.q.q}<br>Đáp án đúng: <b>${m.q.sp?m.q.a:m.q.o[m.q.a]}</b><br>${m.q.ex}</div>`).join('')}<button class="b" onclick="home()">BACK TO HOME</button></div>`}
+home();
+</script></body></html>
